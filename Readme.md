@@ -1,0 +1,3 @@
+# LumousLibrary
+
+Welcome to LumosLibrary, your magical portal to a world of books! Our simple online bookstore application allows you to browse a wide selection of books, add your favorites to your cart, and proceed to a hassle-free checkout. Whether you’re a wizard or a muggle, LumosLibrary is designed to make your book shopping experience as enchanting and effortless as possible. Illuminate your reading journey with LumosLibrary – where every book casts a spell!
