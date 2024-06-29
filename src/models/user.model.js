@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const usersSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -25,20 +25,21 @@ const usersSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 //hash pwd before saving
-usersSchema.pre("save", async function(next){
+userSchema.pre("save", async function(next){
   if(!this.isModified("password")){
     return next();
   };
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
 //method to verify pwd
-usersSchema.methods.isPasswordCorrect = async function(password){
+userSchema.methods.isPasswordCorrect = async function(password){
   return await bcrypt.compare(password, this.password);
 };
 
 //method to generate token
-usersSchema.methods.generateAccessToken = async function(){
+userSchema.methods.generateAccessToken = async function(){
   return jwt.sign(
     {
       _id: this._id,
@@ -52,4 +53,6 @@ usersSchema.methods.generateAccessToken = async function(){
   ); 
 };
 
-export const Users = mongoose.model("Users", usersSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User; 

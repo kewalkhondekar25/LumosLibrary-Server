@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const orderSchema = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "Users"
+    ref: "User"
   },
   cart: {
     type: Schema.Types.ObjectId,
