@@ -26,6 +26,10 @@ const uploadBooks = asyncHandler(async (req, res) => {
     message: "Created",
     data: book
   });
+});
+
+const getSingleBook = asyncHandler(async (req, res) => {
+  // req.params
 })
 
 export {

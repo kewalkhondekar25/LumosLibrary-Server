@@ -18,6 +18,6 @@ app.use(cookieParser());
 import userRouter from "./routes/user.routes.js";
 import bookRouter from "./routes/book.routes.js";
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1", bookRouter);
+app.use("/api/v1/discover", bookRouter);
 
 export default app;
