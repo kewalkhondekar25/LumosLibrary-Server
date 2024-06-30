@@ -22,7 +22,8 @@ const BooksSchema = new mongoose.Schema({
     required: true,
   },
   reviews: {
-    type: [String]
+    type: [String],
+    required: true
   },
   ratings: {
     type: Number,
