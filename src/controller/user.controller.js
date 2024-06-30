@@ -39,34 +39,31 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  //req body => data
   const {email, password} = req.body;
   if(!email || !password){
     res.status(400).json({
       message: "email or password required"
     });
-  };
-  //find user 
+  }; 
   const user = await User.findOne({email});
   if(!user){
     return res.status(404).json({
       message: "user does not exist"
     });
   };
-  //if user; check pwd
   const isPasswordValid = user.isPasswordCorrect(password);
   if(!isPasswordValid){
     return res.status(401).json("invalid user credentials");
   };
-  //token
+
   const loggedInUser = await User.findById(user._id).select("-password");
   const accessToken = await generateAccessToken(user._id);
-  //cookie
+
   const cookieOptions = {
     httpOnly: true,
     secure: true
   };
-  //send res
+
   return res
   .status(200)
   .cookie("accessToken", accessToken, cookieOptions)
@@ -74,8 +71,8 @@ const loginUser = asyncHandler(async (req, res) => {
     message: "User Logged In Successfully",
     data: loggedInUser,
     token: accessToken
-  })
-})
+  });
+});
 
 export {
   registerUser,
