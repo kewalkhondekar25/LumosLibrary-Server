@@ -51,7 +51,7 @@ const loginUser = asyncHandler(async (req, res) => {
       message: "user does not exist"
     });
   };
-  const isPasswordValid = user.isPasswordCorrect(password);
+  const isPasswordValid = await user.isPasswordCorrect(password);
   if(!isPasswordValid){
     return res.status(401).json("invalid user credentials");
   };
