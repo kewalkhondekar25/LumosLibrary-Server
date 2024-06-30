@@ -22,6 +22,11 @@ const uploadBooks = asyncHandler(async (req, res) => {
     });
   };
   const book = await Books.create(payload);
+  if(!book){
+    return res.status(404).json({
+      message: "Books Not Found"
+    })
+  }
   return res.status(201).json({
     message: "Created",
     data: book
@@ -29,10 +34,26 @@ const uploadBooks = asyncHandler(async (req, res) => {
 });
 
 const getSingleBook = asyncHandler(async (req, res) => {
-  // req.params
-})
+  const {id: bookId} = req.params
+  if(!req.params){
+    return res.status(404).json({
+      message: "ID Not Found"
+    });
+  };
+  const book = await Books.findOne({_id: bookId});
+  if(!book){
+    return res.status(404).json({
+      message: "No Book With Such ID Found"
+    });
+  };
+  return res.status(200).json({
+    message: "OK",
+    data: book
+  });
+});
 
 export {
   getAllBooks,
-  uploadBooks
+  uploadBooks,
+  getSingleBook
 }
