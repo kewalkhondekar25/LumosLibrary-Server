@@ -1,17 +1,18 @@
 import mongoose, { Schema } from "mongoose";
 
 const cartSchema = new mongoose.Schema({
-  user: {
+  owner: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  items: [{
+  books: [{
     type: Schema.Types.ObjectId,
-    ref: "CartItems"
-  }],
-  total: {
-    type: Number
-  }
+    ref: "Book"
+  }]
 });
+
+cartSchema.methods.addBook = async function(bookId){
+  this.books = bookId;
+}
 
 export const Cart = mongoose.model("Cart", cartSchema);

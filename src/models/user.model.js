@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -18,10 +19,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  orders: [{
+  cart: {
     type: Schema.Types.ObjectId,
-    ref: "Order"
-  }]
+    ref: "Carts"
+  }
 }, {timestamps: true});
 
 //hash pwd before saving
@@ -53,6 +54,8 @@ userSchema.methods.generateAccessToken = async function(){
     }
   ); 
 };
+
+userSchema.plugin(mongooseAggregatePaginate);
 
 const User = mongoose.model("User", userSchema);
 

@@ -18,7 +18,8 @@ const verifyJWT = asyncHandler(async (req, res, next) => {
     });
   };
   //add user obj to req
-  // req.user = user;
+  req.user = user;
+  // console.log(user);
   next();
 });
 
