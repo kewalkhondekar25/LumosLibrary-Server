@@ -19,10 +19,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  cart: {
+  order: [{
     type: Schema.Types.ObjectId,
-    ref: "Carts"
-  }
+    ref: "Cart"
+  }]
 }, {timestamps: true});
 
 //hash pwd before saving

@@ -1,4 +1,4 @@
-import Books from "../models/books.model.js";
+import Books from "../models/book.model.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 const getAllBooks = asyncHandler(async (req, res) => {

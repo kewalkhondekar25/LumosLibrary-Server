@@ -17,8 +17,10 @@ app.use(cookieParser());
 //routes
 import userRouter from "./routes/user.routes.js";
 import bookRouter from "./routes/book.routes.js";
-import cartRouter from "./routes/cart.routes.js"
+import cartRouter from "./routes/cart.routes.js";
+import checkoutRouter from "./routes/checkout.routes.js";
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/discover", bookRouter);
-app.use("/api/v1", cartRouter);
+app.use("/api/v1/", bookRouter);
+app.use("/api/v1/", cartRouter);
+app.use("/api/v1/", checkoutRouter);
 export default app;

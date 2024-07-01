@@ -1,5 +1,6 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/user.model.js"
+import mongoose from "mongoose";
 
 const generateAccessToken = async (userId) => {
   try {
@@ -87,9 +88,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   })
 });
 
-
 export {
   registerUser,
   loginUser,
-  logoutUser
+  logoutUser,
 }
