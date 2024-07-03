@@ -62,11 +62,13 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const cookieOptions = {
     httpOnly: true,
-    secure: true
+    // secure: true,
+    secure: false,
+    sameSite: 'None'
   };
 
   return res
-  .status(200)
+  .status(201)
   .cookie("accessToken", accessToken, cookieOptions)
   .json({
     message: "User Logged In Successfully",
